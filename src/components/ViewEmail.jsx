@@ -1,5 +1,3 @@
-
-
 import { Box, Typography, styled } from '@mui/material';
 import { useOutletContext, useLocation } from 'react-router-dom';
 import { emptyProfilePic } from '../constants/constant';
@@ -13,17 +11,17 @@ const Subject = styled(Typography)({
     fontSize: 22,
     margin: '10px 0 20px 75px',
     display: 'flex'
-})
+});
 
-const Indicator = styled(Box)`
-    font-size: 12px !important;
-    background: #ddd;
-    color: #222;
-    border-radius: 4px;
-    margin-left: 6px;
-    padding: 2px 4px;
-    align-self: center;
-`;
+const Indicator = styled(Box)({
+    fontSize: 12,
+    background: '#ddd',
+    color: '#222',
+    borderRadius: 4,
+    marginLeft: 6,
+    padding: '2px 4px',
+    alignSelf: 'center'
+});
 
 const Image = styled('img')({
     borderRadius: '50%',
@@ -49,41 +47,41 @@ const Date = styled(Typography)({
     margin: '0 50px 0 auto',
     fontSize: 12,
     color: '#5E5E5E'
-})
+});
 
 const ViewEmail = () => {
-
     const { openDrawer } = useOutletContext();
-    
     const { state } = useLocation();
     const { email } = state;
 
     return (
-        <Box style={openDrawer ? { marginLeft: 250, width: '100%' } : { width: '100%' } }>
+        <Box sx={openDrawer ? { marginLeft: 250, width: '100%' } : { width: '100%' }}>
             <IconWrapper>
-                <ArrowBack fontSize='small' color="action" onClick={() => window.history.back() } />
-                <Delete fontSize='small' color="action" style={{ marginLeft: 40 }} />
+                <ArrowBack fontSize='small' color="action" onClick={() => window.history.back()} />
+                <Delete fontSize='small' color="action" />
             </IconWrapper>
-            <Subject>{email.subject} <Indicator component="span">Inbox</Indicator></Subject>
-            <Box style={{ display: 'flex' }}>
+            <Subject>
+                {email.subject} <Indicator component="span">Inbox</Indicator>
+            </Subject>
+            <Box sx={{ display: 'flex' }}>
                 <Image src={emptyProfilePic} alt="profile" />
                 <Container>
                     <Box>
-                        <Typography>    
-                            {email.to.split('@')[0]} 
+                        <Typography>
+                            {email.to.split('@')[0]}
                             <Box component="span">&nbsp;&#60;{email.to}&#62;</Box>
                         </Typography>
                         <Date>
-                            {(new window.Date(email.date)).getDate()}&nbsp;
-                            {(new window.Date(email.date)).toLocaleString('default', { month: 'long' })}&nbsp;
-                            {(new window.Date(email.date)).getFullYear()} 
+                            {new Date(email.date).getDate()}&nbsp;
+                            {new Date(email.date).toLocaleString('default', { month: 'long' })}&nbsp;
+                            {new Date(email.date).getFullYear()}
                         </Date>
                     </Box>
-                    <Typography style={{ marginTop: 20 }}>{email.body}</Typography>
+                    <Typography>{email.body}</Typography>
                 </Container>
             </Box>
         </Box>
-    )
+    );
 }
 
 export default ViewEmail;
