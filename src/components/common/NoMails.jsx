@@ -1,5 +1,5 @@
 
-import { Box, Typography, styled, Divider } from '@mui/material';
+import { Box, Typography, styled, Divider } from  '@mui/material';
 
 const Component = styled(Box)({
     display: 'flex',
@@ -12,14 +12,17 @@ const Component = styled(Box)({
 
 const StyledDivider = styled(Divider)({
     width: '100%',
-    marginTop: 10
+    marginTop: 10 
 })
 
 const NoMails = ({ message }) => {
     return (
         <Component>
-            <Typography>{message.heading}</Typography>
-            <Typography>{message.subHeading}</Typography>
+            {/* <Typography>{message.heading}</Typography>
+            <Typography>{message.subHeading}</Typography> */}
+            <Typography>{message?.heading || ''}</Typography>
+             <Typography>{message?.subHeading || ''}</Typography>
+
             <StyledDivider />
         </Component>
     )

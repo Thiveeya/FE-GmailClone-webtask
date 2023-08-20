@@ -71,10 +71,11 @@ const ViewEmail = () => {
                             {email.to.split('@')[0]}
                             <Box component="span">&nbsp;&#60;{email.to}&#62;</Box>
                         </Typography>
+                        
                         <Date>
                             {new Date(email.date).getDate()}&nbsp;
                             {new Date(email.date).toLocaleString('default', { month: 'long' })}&nbsp;
-                            {new Date(email.date).getFullYear()}
+                            {new Date(email.date).getFullYear()};
                         </Date>
                     </Box>
                     <Typography>{email.body}</Typography>
